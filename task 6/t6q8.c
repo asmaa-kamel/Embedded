@@ -1,33 +1,28 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-void rem_space( char text[]){
-  char *p= text;
-  char *dest= text;
+void date(char da[]){
+ char *months[]={"January","Febraury","March","April","May","June","July"
+                  ,"August","September","October","November","December"};
 
-  while(*p!= '\0'){
-    if(*p !=' '){
-        *dest =*p;
-        dest++;
-    }
-    p++;
-  }
- *dest ='\0';
+char *token;
+
+token = strtok(da, "/");
+int mon = atoi(token);       
+token = strtok(NULL, "/");
+int day = atoi(token);       
+token = strtok(NULL, "/");
+int year = atoi(token); 
+
+printf("The date : %d,%s,%d", day, months[mon-1],year);
+
 }
+int main (){
+ char date1[30];
+  printf("Enter the date in the format (mm/dd/yyyy) :");
+  scanf("%s", date1);
+  date(date1);
 
-int main(){
-  char text[100]; 
-  int i=0;
-  char ch;
-
-   printf("Enter the text :");
-   while((ch= getchar())!= '\n'&& i<99){
-    text[i]=ch;
-    i++;
-   }
-    text[i]='\0';
-   rem_space(text);
- 
-   printf("Text without space : %s", text);
     return 0;
 }
